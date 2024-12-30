@@ -7,16 +7,6 @@ class Shape:
     def area(self):
         raise NotImplementedError
 
-class Square(Shape):
-    def __init__(self, side):
-        self.side = side
-
-    def perimeter(self):
-        return 4 * self.side
-
-    def area(self):
-        return self.side ** 2
-
 class Rectangle(Shape):
     def __init__(self, x1, y1, x2, y2):
         self.width = abs(x2 - x1)
@@ -27,6 +17,10 @@ class Rectangle(Shape):
 
     def area(self):
         return self.width * self.height
+
+class Square(Rectangle):
+    def __init__(self, side):
+        super().__init__(0, 0, side, side)
 
 class Circle(Shape):
     def __init__(self, radius):
@@ -73,7 +67,6 @@ if __name__ == "__main__":
 
     shapes = process_shape_data(input_data)
     print_shape_info(shapes)
-
 
 
 

@@ -32,6 +32,34 @@ class Circle(Shape):
     def area(self):
         return math.pi * self.radius ** 2
 
+class Triangle(Shape):
+    def __init__(self, x1, y1, x2, y2, x3, y3):
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
+        self.x3 = x3
+        self.y3 = y3
+        self.a, self.b, self.c = self.sides()
+
+    def sides(self):
+        a = math.sqrt((self.x2 - self.x1)**2 + (self.y2 - self.y1)**2)
+        b = math.sqrt((self.x3 - self.x2)**2 + (self.y3 - self.y2)**2)
+        c = math.sqrt((self.x1 - self.x3)**2 + (self.y1 - self.y3)**2)
+        return a, b, c
+
+    def height(self):
+        p = (self.a + self.b + self.c)/2
+        h = (2 / self.a * math.sqrt(p * (p - self.a) * (p - self.b) * (p - self.c)))
+        return h
+
+    def perimeter(self):
+        return self.a + self.b + self.c
+
+    def area(self):
+        p = self.perimeter() / 2
+        return math.sqrt(p * (p - self.a) * (p - self.b) * (p - self.c))
+
 def process_shape_data(input_data):
     shapes = []
     for line in input_data:
